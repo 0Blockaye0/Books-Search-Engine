@@ -7,7 +7,7 @@
 
   here is a link to my project.
   
-  * [link](undefined)
+  * [link](https://shielded-refuge-06376.herokuapp.com/)
 
   ## Table of Contents
 
@@ -22,15 +22,10 @@
   
 
   ## Installation
-
-  To begin installation, open the command line and enter 'npm install' to install dependencies. Next, start the server on your desired port and navigate to the site in the URL.
-
-
-  ## Usage
-<!-- 
-  ![screenshot](/assets/images/screenshot.png)
   
-  /Users/blakejohnson/UT-BOOTCAMP/The-Tech-Blog/assets/screenshot.png -->
+  No installation required
+  
+  ## Usage
   
   ![image](/assets/screenshot.png)
 
@@ -43,7 +38,6 @@
   ## License
 
   * No license is provided for this project
-  * 
 
   ## Badges
   

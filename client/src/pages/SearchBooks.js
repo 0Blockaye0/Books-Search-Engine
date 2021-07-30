@@ -10,10 +10,10 @@ import {
 } from "react-bootstrap";
 
 import Auth from "../utils/auth";
-import { saveBook, searchGoogleBooks } from "../utils/API";
+import { searchGoogleBooks } from "../utils/API";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
 import { SAVE_BOOK } from "../utils/mutations";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 
 const SearchBooks = () => {
   // create state for holding returned google api data
@@ -22,11 +22,12 @@ const SearchBooks = () => {
   const [searchInput, setSearchInput] = useState("");
 
   // create state to hold saved bookId values
-  const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
+  const [savedBookIds, setSavedBookIds] = useState([getSavedBookIds()]);
   const [saveBook, { error }] = useMutation(SAVE_BOOK);
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
+  
   useEffect(() => {
     return () => saveBookIds(savedBookIds);
   });
@@ -67,6 +68,7 @@ const SearchBooks = () => {
   const handleSaveBook = async (bookId) => {
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
+    console.log(bookToSave);
 
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -85,8 +87,12 @@ const SearchBooks = () => {
       }
 
       console.log(data);
+      // const bookIds = data.saveBook.savedBooks.map(book => book.bookId);
+      // console.log("bookIds-line 91:", bookIds);
+      // setSavedBookIds(bookIds);
 
-      // if book successfully saves to user's account, save book id to state
+      // // if book successfully saves to user's account, save book id to state
+      // setSavedBookIds([...savedBookIds, bookToSave.bookId]);
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
       console.error(err);
